@@ -11,13 +11,17 @@ class Form extends React.Component{
 
         //set default form state
         this.state = {
-            value: ''
+            name: '',
+            email: '',
+            phone: ''
         };
     }
 
     onChange(event){
         this.setState({
-            value: event.target.value
+            name: event.target.name,
+            email: event.target.email,
+            phone: event.target.phone
         });
     }
 
@@ -29,19 +33,40 @@ class Form extends React.Component{
 
     onSubmit(){
         this.props.submitAction(this.state);
-        this.setState({value:''});
+        this.setState({
+            name:'',
+            email: '',
+            phone: ''
+        });
     }
 
     render(){
         return(
             <div>
+                <h3>Name</h3>
                 <input 
                     type="text" 
                     onChange={this.onChange}
                     onKeyDown={this.onEnter}
-                    value={this.state.value}
+                    value={this.state.name}
                     />
-                <button onClick={this.onSubmit}>Submit</button>
+                <h3>Email</h3>
+                <input 
+                    type="text" 
+                    onChange={this.onChange}
+                    onKeyDown={this.onEnter}
+                    value={this.state.email}
+                    />
+                <h3>Phone</h3>
+                <input 
+                    type="text" 
+                    onChange={this.onChange}
+                    onKeyDown={this.onEnter}
+                    value={this.state.phone}
+                    />
+                <h3>
+                    <button onClick={this.onSubmit}>Submit</button>
+                </h3>
             </div>
         )
     }
