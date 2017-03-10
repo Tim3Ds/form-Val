@@ -1,4 +1,5 @@
 import React from 'react';
+import './Form.css';
 
 class Form extends React.Component{
     constructor(props){
@@ -11,16 +12,18 @@ class Form extends React.Component{
 
         //set default form state
         this.state = {
-            name: '',
-            email: '',
-            phone: ''
+            name: 'your name',
+            email: 'your@email.com',
+            phone: '888-888-8888'
+            
         };
     }
 
     onChange(event){
+
         this.setState({
-            name: event.target.name,
             email: event.target.email,
+            name: event.target.name,
             phone: event.target.phone
         });
     }
@@ -32,7 +35,7 @@ class Form extends React.Component{
     }
 
     onSubmit(){
-        this.props.submitAction(this.state);
+        //this.props.submitAction(this.state);
         this.setState({
             name:'',
             email: '',
@@ -42,10 +45,11 @@ class Form extends React.Component{
 
     render(){
         return(
-            <div>
+            <div className='form'>
                 <h3>Name</h3>
                 <input 
                     type="text" 
+                    id='name'
                     onChange={this.onChange}
                     onKeyDown={this.onEnter}
                     value={this.state.name}
@@ -53,6 +57,7 @@ class Form extends React.Component{
                 <h3>Email</h3>
                 <input 
                     type="text" 
+                    id='email'
                     onChange={this.onChange}
                     onKeyDown={this.onEnter}
                     value={this.state.email}
@@ -60,6 +65,7 @@ class Form extends React.Component{
                 <h3>Phone</h3>
                 <input 
                     type="text" 
+                    id='phone'
                     onChange={this.onChange}
                     onKeyDown={this.onEnter}
                     value={this.state.phone}
