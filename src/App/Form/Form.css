@@ -1,14 +1,14 @@
 .form{
     background: lightslategrey;
     padding: 1pc;
-    max-width: 50pc;
+    max-width: 15pc;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 4%;
+    border-radius: 10%;
 }
 input{
-  background: tan;
-  border-radius: 4px;
+  background: indigo;
+  border-radius: 20%;
   border: 2px solid #e8e8e8;
   width: 95%;
   height: 38px;
@@ -17,8 +17,17 @@ input{
   padding-right: 10px;
   box-sizing: border-box;
 }
-
-input.error{
+button{
+    background-color: green;
+    border-radius: 2ex;
+    font-size: 17pt;
+    padding: 10px;
+    margin: 1pc;
+}
+.error{
     background: lightcoral;
     border: 3px dashed darkred;
+    padding: 0px;
+    margin: 0px;
+
 }
