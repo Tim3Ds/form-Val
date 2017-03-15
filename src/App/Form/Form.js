@@ -14,64 +14,50 @@ class Form extends React.Component{
             name: '',
             email: '',
             phone: '',
-            valid: false
+            valid: (id)=>{
+                let reg = '';
+                let elm = document.getElementById(id);
+                switch(id){
+                    case 'name':
+                        reg = /^[a-z ,.'-]+$/i;
+                        break;
+                    case 'email':
+                        reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                        break;
+                    case 'phone':
+                        reg = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
+                        break;
+                    default:
+                        break;
+                }
+                if(!reg.test(elm.value)){
+                    elm.className = 'error';
+                    return false;
+                }else{
+                    elm.className = 'good';
+                    return true;
+                }
+                
+            }
             
         };
     }
 
     onChangeName(event){
-        let reg = /^[a-z ,.'-]+$/i
-        if(!reg.test(event.target.value)){
-            let elm = document.getElementById('name')
-            elm.className = 'error'
-            this.setState({
-                valid: false
-            })      
-        }else{
-            let elm = document.getElementById('name')
-            elm.className = 'good'
-            this.setState({
-                valid: true
-            })
-        }
+        
+        this.state.valid('name');
         this.setState({
             name: event.target.value
         })
     }
     onChangeEmail(event){
-        let reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        if(!reg.test(event.target.value)){
-            let elm = document.getElementById('email')
-            elm.className = 'error'
-            this.setState({
-                valid: false
-            })    
-        }else{
-            let elm = document.getElementById('email')
-            elm.className = 'good'
-            this.setState({
-                valid: true
-            })
-        }
+        this.state.valid('email');
         this.setState({
             email: event.target.value
         })
     }
     onChangePhone(event){
-        let reg = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
-        if(!reg.test(event.target.value)){
-            let elm = document.getElementById('phone')
-            elm.className = 'error'
-            this.setState({
-                valid: false
-            })   
-        }else{
-            let elm = document.getElementById('phone')
-            elm.className = 'good'
-            this.setState({
-                valid: true
-            })
-        }
+        this.state.valid('phone');
         this.setState({
             phone: event.target.value
         })
@@ -85,8 +71,7 @@ class Form extends React.Component{
 
     onSubmit(event){
         event.preventDefault();
-        if(this.state.valid){
-
+        if(this.state.valid('name')&&this.state.valid('email')&&this.state.valid('phone')){
             this.setState({
                 name:'',
                 email: '',
