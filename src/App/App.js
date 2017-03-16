@@ -4,6 +4,13 @@ import './App.css';
 import Form from './Form/Form'
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.logInfo = this.logInfo.bind(this);
+  }
+  logInfo = (info)=>{
+    console.log(info);
+  }
   render() {
     return (
       <div className="App">
@@ -12,7 +19,9 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <div className="App-intro">
-          <Form/>
+          <Form getInfo={this.logInfo}>
+
+          </Form>
         </div>
       </div>
     );

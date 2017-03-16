@@ -72,12 +72,13 @@ class Form extends React.Component{
     onSubmit(event){
         event.preventDefault();
         if(this.state.valid('name')&&this.state.valid('email')&&this.state.valid('phone')){
+            this.props.getInfo(this.state);
             this.setState({
                 name:'',
                 email: '',
                 phone: ''
             });
-            document.getElementById('Valid').innerHTML= `<p>Your input was Valid</p>`
+            document.getElementById('Valid').innerHTML= `<p>Your input was Valid And loged to Console</p>`
         }
     }
 
